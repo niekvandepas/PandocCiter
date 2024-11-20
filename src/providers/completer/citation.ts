@@ -54,7 +54,7 @@ export class Citation {
   }): vscode.CompletionItem[] {
     // Compile the suggestion array to vscode completion array
     return this.updateAll().map((item) => {
-      item.filterText = Object.values(item.fields).join(" ");
+      item.filterText = [item.key, ...Object.values(item.fields)].join(" ");
       item.insertText = item.key;
       if (args) {
         item.range = args.document.getWordRangeAtPosition(
